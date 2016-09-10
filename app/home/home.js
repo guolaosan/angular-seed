@@ -20,7 +20,9 @@ angular.module('myApp')
     $scope.endDate = endDate;
     $scope.codex = "000001.SS"
     $scope.queryfromYahoo = function(){
-        if($scope.code.startsWith("60")){
+        if($scope.code.startsWith("000001")){
+            $scope.codex = "000001.SS"
+        }else if($scope.code.startsWith("60")){
             $scope.codex = $scope.code+".SS"
         }else{
             $scope.codex = $scope.code+".SZ"
