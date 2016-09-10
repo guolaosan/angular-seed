@@ -1,13 +1,21 @@
 <div class="container" >
-    <h2 class="text-center" >Welcome, {{test}}!</h2>
-    <form class="navbar-form navbar-left" role="search">
-	  <div class="form-group">
-	    <input type="text" class="form-control" placeholder="Search">
-	  </div>
-	  <button type="submit" class="btn btn-default">Submit</button>
-	</form>
-    <hr>
-    <div class="jumbotron text-center">
-               <highchart id="chart1" config="chartConfig" class="span10"></highchart>
-    </div>
+<div class="row form-inline">
+  <div class="form-group col-sm-3">
+    <label for="code">代码</label>
+    <input type="text" class="form-control" id="code" ng-model="code" placeholder="code">
+  </div>
+  <div class="form-group col-sm-3">
+    <label for="code">分析员</label>
+    <input type="text" class="form-control" id="code" ng-model="anaylist" placeholder="todo">
+  </div>
+  <div class="form-group col-sm-3">
+    <label for="code">开始日期</label>
+    <input type="text" class="form-control" id="code" ng-model="date" placeholder="todo">
+  </div>
+  <span class="col-sm-2"></span>
+  <button type="submit" class="btn btn-success pull-right col-sm-1" ng-click="queryfromYahoo()">Submit</button>
+
+</div>
+<hr>
+<highchart id="chart1" config="chartConfig" class="span12"></highchart>
 </div>
