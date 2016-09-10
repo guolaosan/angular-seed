@@ -54,7 +54,7 @@ angular.module('myApp')
                 }
                 // console.log(datat);
                 $scope.stockdata = datat;
-
+                $scope.chartConfig.series = [];
                 $scope.chartConfig.series.push({
                 id: 1,
                 data: datat
