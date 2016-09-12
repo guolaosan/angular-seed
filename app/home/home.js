@@ -15,7 +15,8 @@ angular.module('myApp')
 
     $scope.getEndDate = function(){
         var today = new Date();
-        var dd = today.getDate()-1;
+        //timezone lag
+        var dd = today.getDate()-2;
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();
         var endDate = yyyy+"-"+mm+"-"+dd;
