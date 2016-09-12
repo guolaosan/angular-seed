@@ -11,14 +11,33 @@ angular.module('myApp')
   })
   .controller('homeController', function($scope, $http){
   	$scope.code = "000001"
+    $scope.codex = "000001.SS";
 
-    var today = new Date();
-    var dd = today.getDate()-1;
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    var endDate = yyyy+"-"+mm+"-"+dd;
-    $scope.endDate = endDate;
-    $scope.codex = "000001.SS"
+    $scope.getEndDate = function(){
+        var today = new Date();
+        var dd = today.getDate()-1;
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        var endDate = yyyy+"-"+mm+"-"+dd;
+        return endDate;
+    }
+
+    $scope.getStartDate = function(){
+        var today = new Date();
+        var start = new Date();
+        //13 is too long for executing by yahoo
+        // start.setMonth(today.getMonth()-13)
+        start.setMonth(today.getMonth()-12);
+        var dd = start.getDate();
+        var mm = start.getMonth(); //January is 0!
+        var yyyy = start.getFullYear();
+        var startDate = yyyy+"-"+mm+"-"+dd;
+        return startDate;
+    }
+
+    $scope.endDate = $scope.getEndDate();
+    $scope.startDate = $scope.getStartDate();
+
     $scope.queryfromYahoo = function(){
         if($scope.code.startsWith("000001")){
             $scope.codex = "000001.SS"
@@ -31,7 +50,7 @@ angular.module('myApp')
         var url =   'https://query.yahooapis.com/v1/public/yql?' +
             'q=select * from yahoo.finance.historicaldata '+
             'where symbol = "' + $scope.codex + '" ' +
-            'and startDate = "2015-08-01" and endDate = "'+$scope.endDate+'"&' + 
+            'and startDate = "'+$scope.startDate+'" and endDate = "'+$scope.endDate+'"&' + 
             'format=json&diagnostics=true&' +
             'env=store://datatables.org/alltableswithkeys';
 
