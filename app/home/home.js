@@ -107,19 +107,24 @@ angular.module('myApp')
     };
 
     $scope.queryReport = function(){
-        var reporturl = "http://52.90.207.223:3000/author/"+$scope.analyst;
+        // var reporturl = "http://52.90.207.223:3000/author/"+$scope.analyst;
+        var reporturl = "http://127.0.0.1:3000/author/"+$scope.analyst;
         $http.get(reporturl).success(function(data) {
             try{
                 // console.log(data);
                 var tdata = [];
                 for (var i = 0; i <data.length; i++) {
                   var d = data[i];
-                  tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                  if(d['secuFullCode'].indexOf($scope.code)>-1){
+                     tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                  }
+                  
                 }
 
                 tdata.sort(function(a,b){
                     return a['x']-b['x'];
                 })
+
                 var anaseries = {
                     type: 'flags',
                     name: 'Flags on series',
