@@ -17,11 +17,12 @@ angular.module('myApp')
     $scope.getEndDate = function(){
         var today = new Date();
         //timezone lag
-        var dd = today.getDate()-2;
+        var dd = today.getDate()-5;
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();
         var endDate = yyyy+"-"+mm+"-"+dd;
-        return endDate;
+        // return endDate;
+        return "2016-09-14";
     }
 
     $scope.getStartDate = function(){
