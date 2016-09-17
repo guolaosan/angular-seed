@@ -14,6 +14,14 @@ angular.module('myApp')
     $scope.codex = "000001.SS";
     $scope.analyst = '赵晓光';
 
+    $scope.itemArray = [
+        {id: 1, name: '赵晓光'},
+        {id: 2, name: '武超则'},
+        {id: 3, name: '宋嘉吉'}
+    ];
+
+    $scope.selected = { analyst: $scope.itemArray[0] };
+
     $scope.getEndDate = function(){
         var today = new Date();
         //timezone lag
@@ -107,16 +115,18 @@ angular.module('myApp')
     };
 
     $scope.queryReport = function(){
-        var reporturl = "http://52.90.207.223:3000/author/"+$scope.analyst;
-        // var reporturl = "http://127.0.0.1:3000/author/"+$scope.analyst;
+        var reporturl = "http://52.90.207.223:3000/author/"+$scope.selected.analyst.name;
+        // var reporturl = "http://127.0.0.1:3000/author/"+$scope.selected.analyst.name;
         $http.get(reporturl).success(function(data) {
             try{
                 // console.log(data);
                 var tdata = [];
                 for (var i = 0; i <data.length; i++) {
                   var d = data[i];
-                  if(d['secuFullCode'].indexOf($scope.code)>-1){
-                     tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                  if("000001" ==  $scope.code){
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                  }else if(d['secuFullCode'].indexOf($scope.code)>-1){
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
                   }
                   
                 }

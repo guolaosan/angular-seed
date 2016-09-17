@@ -7,7 +7,9 @@ angular.module('myApp', [
   'ui.router', 
   'ui.bootstrap', 
   'highcharts-ng',
-  'myApp.version'
+  'myApp.version',
+  'ui.select', 
+  'ngSanitize'
 ]).config(function($stateProvider, $urlRouterProvider,$locationProvider) {
   //
   // For any unmatched url, redirect to /state1
