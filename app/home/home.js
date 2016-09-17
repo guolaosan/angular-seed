@@ -107,8 +107,8 @@ angular.module('myApp')
     };
 
     $scope.queryReport = function(){
-        // var reporturl = "http://52.90.207.223:3000/author/"+$scope.analyst;
-        var reporturl = "http://127.0.0.1:3000/author/"+$scope.analyst;
+        var reporturl = "http://52.90.207.223:3000/author/"+$scope.analyst;
+        // var reporturl = "http://127.0.0.1:3000/author/"+$scope.analyst;
         $http.get(reporturl).success(function(data) {
             try{
                 // console.log(data);
