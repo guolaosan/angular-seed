@@ -13,6 +13,5 @@ angular.module('myApp', [
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/");
 
-  // $locationProvider.html5Mode(true);
 
 });

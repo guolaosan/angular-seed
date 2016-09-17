@@ -12,6 +12,7 @@ angular.module('myApp')
   .controller('homeController', function($scope, $http){
   	$scope.code = "000001"
     $scope.codex = "000001.SS";
+    $scope.analyst = '赵晓光';
 
     $scope.getEndDate = function(){
         var today = new Date();
@@ -72,14 +73,81 @@ angular.module('myApp')
                         parseFloat( quotes[ i ].Open )
                     ]);
                 }
-                // console.log(datat);
+
                 $scope.stockdata = datat;
                 $scope.chartConfig.series = [];
                 $scope.chartConfig.series.push({
-                id: 1,
+                id: 'dataseries',
                 data: datat
                 });
+
+                $scope.queryReport();
+                
                 return datat;
+
+            }catch(e){
+                $scope.response = JSON.stringify({error:"error from server side"});
+            }
+
+        }).error(function(data){
+
+              $scope.response = JSON.stringify({"error":"error from server side","data":data},null,Number(2));
+        });
+
+        // return encodeURI( url );
+    }
+
+    $scope.constructLink = function(item){
+        var t = item['datetime'].split('T');
+        var d = t[0];
+        var dd = d.replace(/-/g,'');
+        var url = "http://data.eastmoney.com/report/"+dd+"/"+item['infoCode']+".html";
+        return url;
+    };
+
+    $scope.queryReport = function(){
+        var reporturl = "http://52.90.207.223:3000/author/"+$scope.analyst;
+        $http.get(reporturl).success(function(data) {
+            try{
+                // console.log(data);
+                var tdata = [];
+                for (var i = 0; i <data.length; i++) {
+                  var d = data[i];
+                  tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                }
+
+                tdata.sort(function(a,b){
+                    return a['x']-b['x'];
+                })
+                var anaseries = {
+                    type: 'flags',
+                    name: 'Flags on series',
+                    data: tdata,
+                    onSeries: 'dataseries',
+                    shape: 'squarepin'
+                };
+
+                $scope.chartConfig.options.plotOptions={
+                    flags:{
+                        point:{
+                        events:{
+                            click:function(e){
+                                e.preventDefault();
+                                
+                                var url = this.url;
+                                
+                                window.open(url,'_blank');
+                            }
+                        }
+                        }
+                    }
+                },
+                $scope.chartConfig.series = [];
+                $scope.chartConfig.series.push({
+                id: 'dataseries',
+                data: $scope.stockdata
+                });
+                $scope.chartConfig.series.push(anaseries);
 
             }catch(e){
                 $scope.response = JSON.stringify({error:"error from server side"});
@@ -89,8 +157,7 @@ angular.module('myApp')
               $scope.response = JSON.stringify({"error":"error from server side","data":data},null,Number(2));
         });
 
-        // return encodeURI( url );
-    }
+    } 
   	
     $scope.chartConfig = {
         options: {
