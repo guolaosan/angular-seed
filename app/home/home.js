@@ -17,7 +17,41 @@ angular.module('myApp')
     $scope.itemArray = [
         {id: 1, name: '赵晓光'},
         {id: 2, name: '武超则'},
-        {id: 3, name: '宋嘉吉'}
+        {id: 3, name: '宋嘉吉'},
+        // {id: 4, name: '任泽平'},
+        {id: 5, name: '邬博华'},
+        // {id: 6, name: '周旭辉'},
+        // {id: 7, name: '王天一'},
+        // {id: 8, name: '李大军'},
+        // {id: 9, name: '侯丽科'},
+        {id: 10, name: '缴文超'},
+        {id: 11, name: '魏涛'},
+        {id: 12, name: '马鲲鹏'},
+        {id: 13, name: '刘章明'},
+        {id: 14, name: '董广阳'},
+        {id: 15, name: '杨涛'},
+        {id: 16, name: '马军'},
+        {id: 17, name: '马莉'},
+        {id: 18, name: '朱纯阳'},
+        {id: 19, name: '沈涛'},
+        {id: 20, name: '裘孝锋'},
+        {id: 21, name: '王席鑫'},
+        {id: 22, name: '鄢凡', group: '电子类'},
+        {id: 23, name: '董瑞斌', group: '电子类'},
+        {id: 24, name: '邹戈'},
+        {id: 25, name: '徐春'},
+        {id: 26, name: '笃慧'},
+        {id: 27, name: '庞琳琳'},
+        {id: 28, name: '巨国贤'},
+        {id: 29, name: '黄守宏'},
+        {id: 30, name: '刘洋',group:'计算机'},
+        {id: 31, name: '胡又文'},
+        {id: 32, name: '文浩'},
+        {id: 33, name: '朱国广'},
+        {id: 34, name: '陈佳'},
+        {id: 35, name: '吴立'},
+        {id: 36, name: '冯福章'}
+
     ];
 
     $scope.selected = { analyst: $scope.itemArray[0] };
