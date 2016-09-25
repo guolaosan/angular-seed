@@ -63,8 +63,8 @@ angular.module('myApp')
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();
         var endDate = yyyy+"-"+mm+"-"+dd;
-        // return endDate;
-        return "2016-09-14";
+        return endDate;
+        // return "2016-09-14";
     }
 
     $scope.getStartDate = function(){
@@ -72,7 +72,7 @@ angular.module('myApp')
         var start = new Date();
         //13 is too long for executing by yahoo
         // start.setMonth(today.getMonth()-13)
-        start.setMonth(today.getMonth()-12);
+        start.setMonth(today.getMonth()-9);
         var dd = start.getDate();
         var mm = start.getMonth(); //January is 0!
         var yyyy = start.getFullYear();
