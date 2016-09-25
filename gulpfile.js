@@ -42,9 +42,9 @@ gulp.task('minjs', function() {
         jslibPath + 'angular-sanitize/angular-sanitize.min.js',
         jslibPath + 'angular-ui-select/dist/select.js'
         ]) 
-        .pipe(plumber())
+        // .pipe(plumber())
         .pipe(concat('index.js')) 
-        // .pipe(uglify()) 
+        .pipe(uglify()) 
         .pipe(gulp.dest('./app')); 
 });
 
