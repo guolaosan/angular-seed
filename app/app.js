@@ -7,7 +7,6 @@ angular.module('myApp', [
   'ui.router', 
   'ui.bootstrap', 
   'highcharts-ng',
-  'myApp.version',
   'ui.select', 
   'ngSanitize'
 ]).config(function($stateProvider, $urlRouterProvider,$locationProvider) {
