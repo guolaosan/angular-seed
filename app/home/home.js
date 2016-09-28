@@ -153,9 +153,9 @@ angular.module('myApp')
                 for (var i = 0; i <data.length; i++) {
                   var d = data[i];
                   if("000001" ==  $scope.code){
-                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':d['pdfurl']});
                   }else if(d['secuFullCode'].indexOf($scope.code)>-1){
-                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':$scope.constructLink(d)});
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':d['pdfurl']});
                   }
                   
                 }
