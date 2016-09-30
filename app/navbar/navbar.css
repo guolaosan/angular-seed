@@ -1,15 +1,4 @@
-.theme-bar  {
-  border-radius: 0;
-  background-color: #333333;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
-
-  &-link {
-    color: white;
-    &:focus, &:hover {
-      color: #BBB;
-      background-color: inherit !important; // override bootstrap
-      text-decoration: none;
-    }
+.navbar-custom {
+    background: #2C3E50;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
-}
