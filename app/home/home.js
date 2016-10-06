@@ -68,37 +68,14 @@ angular.module('myApp')
         {id: 33, name: '朱国广',domain:'其他'},
         {id: 34, name: '陈佳',domain:'其他'},
         {id: 35, name: '吴立',domain:'农林牧渔'},
-        {id: 36, name: '冯福章',domain:'军工'}
+        {id: 36, name: '冯福章',domain:'军工'},
+         {id: 278, name: '杨涛',domain:'建筑和工程'},
+         {id: 279, name: '夏天',domain:'建筑和工程'}, 
+         {id: 280, name: '唐笑',domain:'建筑和工程'},
+         {id: 281, name: '陆玲玲',domain:'建筑和工程'}        
     ];
 
     $scope.selected = { analyst: $scope.itemArray[0] };
-
-    $scope.getEndDate = function(){
-        var today = new Date();
-        //timezone lag
-        var dd = today.getDate()-5;
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        var endDate = yyyy+"-"+mm+"-"+dd;
-        return endDate;
-        // return "2016-09-14";
-    }
-
-    $scope.getStartDate = function(){
-        var today = new Date();
-        var start = new Date();
-        //13 is too long for executing by yahoo
-        // start.setMonth(today.getMonth()-13)
-        start.setMonth(today.getMonth()-9);
-        var dd = start.getDate();
-        var mm = start.getMonth(); //January is 0!
-        var yyyy = start.getFullYear();
-        var startDate = yyyy+"-"+mm+"-"+dd;
-        return startDate;
-    }
-
-    $scope.endDate = $scope.getEndDate();
-    $scope.startDate = $scope.getStartDate();
 
     $scope.queryfromYahoo = function(){
         if($scope.code.startsWith("000001")){
@@ -159,58 +136,6 @@ angular.module('myApp')
               $scope.response = JSON.stringify({"error":"error from server side","data":data},null,Number(2));
               console.log("parse data error")
         });
-        // if($scope.code.startsWith("000001")){
-        //     $scope.codex = "000001.SS"
-        // }else if($scope.code.startsWith("60")){
-        //     $scope.codex = $scope.code+".SS"
-        // }else{
-        //     $scope.codex = $scope.code+".SZ"
-        // }
-
-        // var url =   'https://query.yahooapis.com/v1/public/yql?' +
-        //     'q=select * from yahoo.finance.historicaldata '+
-        //     'where symbol = "' + $scope.codex + '" ' +
-        //     'and startDate = "'+$scope.startDate+'" and endDate = "'+$scope.endDate+'"&' + 
-        //     'format=json&diagnostics=true&' +
-        //     'env=store://datatables.org/alltableswithkeys';
-
-        // var encodedURI = encodeURI(url);
-
-        // $http.get(encodedURI).success(function(data) {
-        //     try{
-        //         // $scope.response= JSON.stringify(data,null,Number(2));
-
-        //         // console.log($scope.response);
-        //         var quotes = data.query.results.quote,
-        //             datat = [],
-        //             i;
-
-        //         for( i = quotes.length - 1; i >=0; i-- ) {
-        //             datat.push([
-        //                 ( new Date( quotes[ i ].Date ) ).getTime(),
-        //                 parseFloat( quotes[ i ].Open )
-        //             ]);
-        //         }
-
-        //         $scope.stockdata = datat;
-        //         $scope.chartConfig.series = [];
-        //         $scope.chartConfig.series.push({
-        //         id: 'dataseries',
-        //         data: datat
-        //         });
-
-        //         $scope.queryReport();
-                
-        //         return datat;
-
-        //     }catch(e){
-        //         $scope.response = JSON.stringify({error:"error from server side"});
-        //     }
-
-        // }).error(function(data){
-
-        //       $scope.response = JSON.stringify({"error":"error from server side","data":data},null,Number(2));
-        // });
 
     }
 
@@ -288,9 +213,6 @@ angular.module('myApp')
             chart: {
                 zoomType: 'x'
             },
-            rangeSelector: {
-                enabled: true
-            },
             navigator: {
                 enabled: true
             }
@@ -298,6 +220,9 @@ angular.module('myApp')
         series: [],
         title: {
             text: '分析师研报跟踪'
+        },
+        rangeSelector : {
+            selected : 1
         },
         useHighStocks: true
     }
