@@ -120,7 +120,7 @@ angular.module('myApp')
                 var jload = JSON.parse(payload)
                 var  datat = []
                 for(var item in jload.data){
-                    if("sh000001"==item){
+                    if("sh000001"==item || item.startsWith("sz399")){
                         for(var i = 0; i<jload.data[item].day.length;i++){
                             datat.push([
                                 ( new Date( jload.data[item].day[ i ][0]) ).getTime(),
@@ -151,11 +151,13 @@ angular.module('myApp')
 
             }catch(e){
                 $scope.response = JSON.stringify({error:"error from server side"});
+                console.log("get data error")
             }
 
         }).error(function(data){
 
               $scope.response = JSON.stringify({"error":"error from server side","data":data},null,Number(2));
+              console.log("parse data error")
         });
         // if($scope.code.startsWith("000001")){
         //     $scope.codex = "000001.SS"
@@ -229,7 +231,7 @@ angular.module('myApp')
                 var tdata = [];
                 for (var i = 0; i <data.length; i++) {
                   var d = data[i];
-                  if("000001" ==  $scope.code){
+                  if("000001" ==  $scope.code || $scope.code.startsWith("399")){
                     tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':d['pdfurl']});
                   }else if(d['secuFullCode'].indexOf($scope.code)>-1){
                     tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':d['pdfurl']});
