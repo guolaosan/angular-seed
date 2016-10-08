@@ -14,7 +14,7 @@
       <ui-select-match>
           <span ng-bind="$select.selected.name"></span>
       </ui-select-match>
-      <ui-select-choices group-by="'domain'" repeat="item in (itemArray | filter: $select.search) track by item.id">
+      <ui-select-choices group-by="'domain'" repeat="item in (itemArray | filter: $select.search) track by item.uid">
           <span ng-bind="item.name"></span>
       </ui-select-choices>
   </ui-select>

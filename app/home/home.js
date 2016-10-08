@@ -13,67 +13,26 @@ angular.module('myApp')
   	$scope.code = "000001"
     $scope.codex = "000001.SS";
     $scope.analyst = '赵晓光';
+    //52.198.111.194
+    $scope.serverurl = 'http://10.254.145.220:3000/';
 
     $scope.itemArray = [
-        {id: 1, name: '赵晓光',domain:'电子'},
-        {id: 2, name: '武超则',domain:'通讯'},
-         {id: 90, name: '郑震湘',domain:'电子'},  
-         {id: 91, name: '邵洁',domain:'电子'},
-         {id: 92, name: '安永平',domain:'电子'},
-         {id: 93, name: '鄢凡',domain:'电子'},
-         {id: 94, name: '马鹏清',domain:'电子'},
-         {id: 95, name: '许兴军',domain:'电子'},
-         {id: 96, name: '胡又文',domain:'计算机'},
-         {id: 97, name: '汤旸玚',domain:'计算机'},
-         {id: 98, name: '张轶乾',domain:'计算机'},
-         {id: 99, name: '刘洋',domain:'计算机'},
-         {id: 100, name: '刘智',domain:'计算机'}, 
-         {id: 101, name: '冯达',domain:'计算机'},
-         {id: 102, name: '闻学臣',domain:'计算机'},
-         {id: 103, name: '刘畅',domain:'计算机'},
-         {id: 104, name: '符健',domain:'计算机'},
-         {id: 105, name: '范国华',domain:'计算机'},
-         {id: 106, name: '王喆',domain:'计算机'},
-         {id: 107, name: '袁煜明',domain:'计算机'},
-         {id: 108, name: '刘泽晶',domain:'计算机'},
-         {id: 110, name: '于海宁',domain:'通讯'}, 
-         {id: 111, name: '徐荃子',domain:'通讯'},
-         {id: 112, name: '崔晨',domain:'通讯'},     
-         {id: 113, name: '王大鹏',domain:'通讯'},
-         {id: 114, name: '程成',domain:'通讯'},     
-         {id: 115, name: '李亚军',domain:'通讯'},
-         {id: 116, name: '马军',domain:'通讯'},
-         {id: 117, name: '束海峰',domain:'通讯'},
-         {id: 118, name: '樊鹏',domain:'通讯'},        
-        {id: 3, name: '宋嘉吉',domain:'其他'},
-        {id: 5, name: '邬博华',domain:'电力新能源'},
-        {id: 10, name: '缴文超',domain:'非银金融'},
-        {id: 11, name: '魏涛',domain:'非银金融'},
-        {id: 12, name: '马鲲鹏',domain:'银行'},
-        {id: 13, name: '刘章明',domain:'批发和零售贸易'},
-        {id: 14, name: '董广阳',domain:'食品饮料'},
-        {id: 15, name: '杨涛',domain:'非金属材料'},
-        {id: 17, name: '马莉',domain:'纺织服装'},
-        {id: 18, name: '朱纯阳',domain:'其他'},
-        {id: 19, name: '沈涛',domain:'环保'},
-        {id: 20, name: '裘孝锋',domain:'石油化工'},
-        {id: 21, name: '王席鑫',domain:'基础化工'},
-        {id: 24, name: '邹戈',domain:'非金属材料'},
-        {id: 25, name: '徐春',domain:'家电'},
-        {id: 26, name: '笃慧',domain:'钢铁'},
-        {id: 27, name: '庞琳琳',domain:'其他'},
-        {id: 28, name: '巨国贤',domain:'有色金属'},
-        {id: 29, name: '黄守宏',domain:'其他'},
-        {id: 32, name: '文浩',domain:'传播与文化'},
-        {id: 33, name: '朱国广',domain:'其他'},
-        {id: 34, name: '陈佳',domain:'其他'},
-        {id: 35, name: '吴立',domain:'农林牧渔'},
-        {id: 36, name: '冯福章',domain:'军工'},
-         {id: 278, name: '杨涛',domain:'建筑和工程'},
-         {id: 279, name: '夏天',domain:'建筑和工程'}, 
-         {id: 280, name: '唐笑',domain:'建筑和工程'},
-         {id: 281, name: '陆玲玲',domain:'建筑和工程'}        
+        {uid: 1, name: '赵晓光',domain:'电子'},
+        {uid: 2, name: '武超则',domain:'通讯'},
     ];
+
+    if(localStorage.getItem('anas')){
+        $scope.itemArray = JSON.parse(localStorage.getItem('anas'));
+    }else{
+        $http.get($scope.serverurl+"ana").success(function(data) {
+            localStorage.setItem('anas',JSON.stringify(data));
+            $scope.itemArray = data;
+        }).error(function(data){
+          console.log("get analysts failed")
+        });        
+    }
+
+
 
     $scope.selected = { analyst: $scope.itemArray[0] };
 
@@ -148,8 +107,8 @@ angular.module('myApp')
     };
 
     $scope.queryReport = function(){
-        var reporturl = "http://52.198.111.194:3000/author/"+$scope.selected.analyst.name;
-        // var reporturl = "http://127.0.0.1:3000/author/"+$scope.selected.analyst.name;
+        // var reporturl = "http://52.198.111.194:3000/author/"+$scope.selected.analyst.name;
+        var reporturl = $scope.serverurl+"author/"+$scope.selected.analyst.name;
         $http.get(reporturl).success(function(data) {
             try{
                 // console.log(data);
