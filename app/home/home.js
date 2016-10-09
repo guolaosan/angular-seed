@@ -111,7 +111,7 @@ angular.module('myApp')
     $scope.queryReport = function(){
         // var reporturl = "http://52.198.111.194:3000/author/"+$scope.selected.analyst.name;
         var reporturl = $scope.serverurl+"author/"+$scope.selected.analyst.name;
-        if($scope.selected.analyst.uid = 999){
+        if($scope.selected.analyst.uid == 999){
             reporturl = $scope.serverurl+"code/"+$scope.code;
         }
         
