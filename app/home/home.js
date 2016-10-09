@@ -176,7 +176,8 @@ angular.module('myApp')
     $scope.chartConfig = {
         options: {
             chart: {
-                zoomType: 'x'
+                zoomType: 'x',
+                height: 600,
             },
             navigator: {
                 enabled: true
