@@ -14,7 +14,7 @@ angular.module('myApp')
     $scope.codex = "000001.SS";
     $scope.analyst = '赵晓光';
     //52.198.111.194
-    $scope.serverurl = 'http://10.254.145.220:3000/';
+    $scope.serverurl = 'http://52.198.111.194:3000/';
 
     $scope.itemArray = [
         {uid: 1, name: '赵晓光',domain:'电子'},
@@ -23,10 +23,12 @@ angular.module('myApp')
 
     if(localStorage.getItem('anas')){
         $scope.itemArray = JSON.parse(localStorage.getItem('anas'));
+        $scope.itemArray.push({uid:999,name:'所有头牌',domain:'其他'})
     }else{
         $http.get($scope.serverurl+"ana").success(function(data) {
             localStorage.setItem('anas',JSON.stringify(data));
             $scope.itemArray = data;
+            $scope.itemArray.push({uid:999,name:'所有头牌',domain:'其他'})
         }).error(function(data){
           console.log("get analysts failed")
         });        
@@ -109,6 +111,10 @@ angular.module('myApp')
     $scope.queryReport = function(){
         // var reporturl = "http://52.198.111.194:3000/author/"+$scope.selected.analyst.name;
         var reporturl = $scope.serverurl+"author/"+$scope.selected.analyst.name;
+        if($scope.selected.analyst.uid = 999){
+            reporturl = $scope.serverurl+"code/"+$scope.code;
+        }
+        
         $http.get(reporturl).success(function(data) {
             try{
                 // console.log(data);
