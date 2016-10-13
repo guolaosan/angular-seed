@@ -16,7 +16,7 @@ angular.module('myApp')
             zoomType: 'xy'
         },
         title: {
-            text: '925竞价量---399102指数'
+            text: '925竞价量---上证指数'
         },
         subtitle: {
             text: ''
@@ -33,7 +33,7 @@ angular.module('myApp')
                 }
             },
             title: {
-                text: '399102指数',
+                text: '上证指数',
                 style: {
                     color: Highcharts.getOptions().colors[1]
                 }
@@ -69,7 +69,7 @@ angular.module('myApp')
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
         series: [{
-            name: '925竞价量',
+            name: '深圳 925竞价量',
             type: 'column',
             yAxis: 1,
             data: [6.47, 5.74, 7.71,3.89],
@@ -77,13 +77,25 @@ angular.module('myApp')
                 valueSuffix: '亿'
             }
 
-        }, {
-            name: '399102指数',
+        }
+        , {
+            name: '上证 925竞价量',
+            type: 'column',
+            yAxis: 1,
+            data: [4.70, 4.72, 6.27,3.50],
+            tooltip: {
+                valueSuffix: '亿'
+            }
+
+        }
+        , {
+            name: '上证指数',
             type: 'spline',
-            data: [2803.29, 2804.16, 2800.82],
+            data: [3048.14, 3065.25, 3058.50],
             tooltip: {
                 valueSuffix: ''
             }
-        }]
+        }
+        ]
     };
 });
