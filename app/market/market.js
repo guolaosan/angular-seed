@@ -22,7 +22,7 @@ angular.module('myApp')
             text: ''
         },
         xAxis: [{
-            categories: ['2016-10-10', '2016-10-11', '2016-10-12'],
+            categories: ['2016-10-10', '2016-10-11', '2016-10-12','2016-10-13'],
             crosshair: true
         }],
         yAxis: [{ // Primary yAxis
@@ -72,7 +72,7 @@ angular.module('myApp')
             name: '925竞价量',
             type: 'column',
             yAxis: 1,
-            data: [6.47, 5.74, 7.71],
+            data: [6.47, 5.74, 7.71,3.89],
             tooltip: {
                 valueSuffix: '亿'
             }
