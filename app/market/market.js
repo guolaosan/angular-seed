@@ -29,13 +29,13 @@ angular.module('myApp')
             labels: {
                 format: '{value}',
                 style: {
-                    color: Highcharts.getOptions().colors[2]
+                    color: Highcharts.getOptions().colors[1]
                 }
             },
             title: {
                 text: '399102指数',
                 style: {
-                    color: Highcharts.getOptions().colors[2]
+                    color: Highcharts.getOptions().colors[1]
                 }
             },
             opposite: true
