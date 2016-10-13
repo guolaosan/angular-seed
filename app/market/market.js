@@ -16,25 +16,24 @@ angular.module('myApp')
             zoomType: 'xy'
         },
         title: {
-            text: 'Average Monthly Weather Data for Tokyo'
+            text: '925竞价量---399102指数'
         },
         subtitle: {
-            text: 'Source: WorldClimate.com'
+            text: ''
         },
         xAxis: [{
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            categories: ['2016-10-10', '2016-10-11', '2016-10-12'],
             crosshair: true
         }],
         yAxis: [{ // Primary yAxis
             labels: {
-                format: '{value}°C',
+                format: '{value}',
                 style: {
                     color: Highcharts.getOptions().colors[2]
                 }
             },
             title: {
-                text: 'Temperature',
+                text: '399102指数',
                 style: {
                     color: Highcharts.getOptions().colors[2]
                 }
@@ -44,33 +43,18 @@ angular.module('myApp')
         }, { // Secondary yAxis
             gridLineWidth: 0,
             title: {
-                text: 'Rainfall',
+                text: '925竞价量',
                 style: {
                     color: Highcharts.getOptions().colors[0]
                 }
             },
             labels: {
-                format: '{value} mm',
+                format: '{value}',
                 style: {
                     color: Highcharts.getOptions().colors[0]
                 }
             }
 
-        }, { // Tertiary yAxis
-            gridLineWidth: 0,
-            title: {
-                text: 'Sea-Level Pressure',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            },
-            labels: {
-                format: '{value} mb',
-                style: {
-                    color: Highcharts.getOptions().colors[1]
-                }
-            },
-            opposite: true
         }],
         tooltip: {
             shared: true
@@ -85,33 +69,20 @@ angular.module('myApp')
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
         series: [{
-            name: 'Rainfall',
+            name: '925竞价量',
             type: 'column',
             yAxis: 1,
-            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+            data: [6.47, 5.74, 7.71],
             tooltip: {
-                valueSuffix: ' mm'
+                valueSuffix: '亿'
             }
 
         }, {
-            name: 'Sea-Level Pressure',
+            name: '399102指数',
             type: 'spline',
-            yAxis: 2,
-            data: [1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6, 1010.2, 1013.1, 1016.9, 1018.2, 1016.7],
-            marker: {
-                enabled: false
-            },
-            dashStyle: 'shortdot',
+            data: [2803.29, 2804.16, 2800.82],
             tooltip: {
-                valueSuffix: ' mb'
-            }
-
-        }, {
-            name: 'Temperature',
-            type: 'spline',
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
-            tooltip: {
-                valueSuffix: ' °C'
+                valueSuffix: ''
             }
         }]
     };
