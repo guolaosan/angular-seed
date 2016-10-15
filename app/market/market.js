@@ -11,6 +11,49 @@ angular.module('myApp')
   })
 
 .controller('marketController', function($scope, $http){
+    //get shanghai and shenzhen close price since 2016-10-10
+    var url = 'http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?_var=kk&param=sh000001,day,2016-10-10,,10000,qfq';
+    var encodedURI = encodeURI(url);
+
+     $http.get(encodedURI).success(function(data) {
+        try{
+            var p = /kk=(.*)/
+            var m = p.exec(data)
+            var payload = m[1]
+            var jload = JSON.parse(payload)
+            var datat = []
+            var dtseries = []
+            for(var item in jload.data){
+                if("sh000001"==item || item.startsWith("sz399")){
+                    for(var i = 0; i<jload.data[item].day.length;i++){
+                        datat.push(
+                            parseFloat( jload.data[item].day[ i ][2] )
+                        );
+                        var date = new Date( jload.data[item].day[ i ][0]);
+                        var d = date.getDate();
+                        var m = date.getMonth() + 1;
+                        var y = date.getFullYear();
+                        dtseries.push(''+y+'-'+m+'-'+d);
+                    }
+                }
+
+            }
+            // $scope.chart2Config.series = [];
+            //hardcode 2 means sh000001
+            $scope.chart2Config.series[2].data = datat;
+            $scope.chart2Config.xAxis[0].categories = dtseries;
+
+        }catch(e){
+            $scope.response = JSON.stringify({error:"error from server side"});
+            console.log("get data error")
+        }
+
+    }).error(function(data){
+
+          $scope.response = JSON.stringify({"error":"error from server side","data":data},null,Number(2));
+          console.log("parse data error")
+    });
+
     $scope.chart2Config = {
         chart: {
             zoomType: 'xy'
@@ -22,20 +65,20 @@ angular.module('myApp')
             text: ''
         },
         xAxis: [{
-            categories: ['2016-10-10', '2016-10-11', '2016-10-12','2016-10-13'],
+            categories: ['2016-10-10','2016-10-11','2016-10-12','2016-10-13','2016-10-14'],
             crosshair: true
         }],
         yAxis: [{ // Primary yAxis
             labels: {
                 format: '{value}',
                 style: {
-                    color: Highcharts.getOptions().colors[1]
+                    color: Highcharts.getOptions().colors[3]
                 }
             },
             title: {
                 text: '上证指数',
                 style: {
-                    color: Highcharts.getOptions().colors[1]
+                    color: Highcharts.getOptions().colors[3]
                 }
             },
             opposite: true
@@ -68,11 +111,12 @@ angular.module('myApp')
             floating: true,
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
+        //keep the order of sz925,sh925,and sh000001!!!
         series: [{
             name: '深圳 925竞价量',
             type: 'column',
             yAxis: 1,
-            data: [6.47, 5.74, 7.71,3.89],
+            data: [6.47, 5.74, 7.71,3.89,6.37],
             tooltip: {
                 valueSuffix: '亿'
             }
@@ -82,7 +126,7 @@ angular.module('myApp')
             name: '上证 925竞价量',
             type: 'column',
             yAxis: 1,
-            data: [4.70, 4.72, 6.27,3.50],
+            data: [4.70, 4.72, 6.27,3.50,4.81],
             tooltip: {
                 valueSuffix: '亿'
             }
@@ -94,7 +138,8 @@ angular.module('myApp')
             data: [3048.14, 3065.25, 3058.50],
             tooltip: {
                 valueSuffix: ''
-            }
+            },
+            color: Highcharts.getOptions().colors[3]
         }
         ]
     };
