@@ -143,4 +143,31 @@ angular.module('myApp')
         }
         ]
     };
+
+    var url925 = 'http://52.198.111.194:3000/925';
+    var encodedURI925 = encodeURI(url925);
+
+     $http.get(encodedURI925).success(function(data) {
+        try{
+            var sh925s = []
+            var sz925s = []
+            for(var i =0;i<data.length;i++){
+            	sh925s.push(data[i]['shvol']);
+            	sz925s.push(data[i]['szvol']);
+            }
+            $scope.chart2Config.series[0].data = sz925s;
+            $scope.chart2Config.series[1].data = sh925s;
+            //danger! strong assumption!!!
+            // $scope.chart2Config.xAxis[0].categories = dtseries;
+
+        }catch(e){
+            $scope.response = JSON.stringify({error:"error from 925 server side"});
+            console.log("get 925 data error")
+        }
+
+    }).error(function(data){
+
+          $scope.response = JSON.stringify({"error":"error from 925 server side","data":data},null,Number(2));
+          console.log("parse 925 data error")
+    });    
 });
