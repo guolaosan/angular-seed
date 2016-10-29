@@ -122,9 +122,9 @@ angular.module('myApp')
                 for (var i = 0; i <data.length; i++) {
                   var d = data[i];
                   if("000001" ==  $scope.code || $scope.code.startsWith("399")){
-                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':d['pdfurl']});
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['secuName']+' : '+d['title']+' : '+d['secuFullCode'],'url':d['pdfurl']});
                   }else if(d['secuFullCode'].indexOf($scope.code)>-1){
-                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['title'],'url':d['pdfurl']});
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['secuName']+' : '+d['title']+' : '+d['secuFullCode'],'url':d['pdfurl']});
                   }
                   
                 }
