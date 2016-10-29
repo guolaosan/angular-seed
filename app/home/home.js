@@ -124,7 +124,7 @@ angular.module('myApp')
                   if("000001" ==  $scope.code || $scope.code.startsWith("399")){
                     tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['secuName']+' : '+d['title']+' : '+d['secuFullCode'],'url':d['pdfurl']});
                   }else if(d['secuFullCode'].indexOf($scope.code)>-1){
-                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['secuName']+' : '+d['title']+' : '+d['secuFullCode'],'url':d['pdfurl']});
+                    tdata.push({'x': new Date(d['datetime']).getTime(),'title': d['author']+' : '+d['title'],'url':d['pdfurl']});
                   }
                   
                 }
