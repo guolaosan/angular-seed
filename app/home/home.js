@@ -66,12 +66,22 @@ angular.module('myApp')
                             ]);
                         }                        
                     }else{
+                        if(jload.data[item].day){
+                         for(var i = 0; i<jload.data[item].day.length;i++){
+                            datat.push([
+                                ( new Date( jload.data[item].day[ i ][0]) ).getTime(),
+                                parseFloat( jload.data[item].day[ i ][2] )
+                            ]);
+                        } 
+                        }else{
                          for(var i = 0; i<jload.data[item].qfqday.length;i++){
                             datat.push([
                                 ( new Date( jload.data[item].qfqday[ i ][0]) ).getTime(),
                                 parseFloat( jload.data[item].qfqday[ i ][2] )
                             ]);
-                        }                        
+                        }                             
+                        }
+                       
                     }
 
                 }
