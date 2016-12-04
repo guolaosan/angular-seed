@@ -21,12 +21,12 @@ angular.module('myApp')
         {uid: 2, name: '武超则',domain:'通讯'},
     ];
 
-    if(localStorage.getItem('anas')){
-        $scope.itemArray = JSON.parse(localStorage.getItem('anas'));
+    if(localStorage.getItem('anas16')){
+        $scope.itemArray = JSON.parse(localStorage.getItem('anas16'));
         $scope.itemArray.push({uid:999,name:'所有头牌',domain:'其他'})
     }else{
         $http.get($scope.serverurl+"ana").success(function(data) {
-            localStorage.setItem('anas',JSON.stringify(data));
+            localStorage.setItem('anas16',JSON.stringify(data));
             $scope.itemArray = data;
             $scope.itemArray.push({uid:999,name:'所有头牌',domain:'其他'})
         }).error(function(data){
