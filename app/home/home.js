@@ -146,7 +146,7 @@ angular.module('myApp')
                 var anaseries = {
                     type: 'flags',
                     name: 'Flags on series',
-                    data: tdata,
+                    data: tdata.slice(-999),
                     onSeries: 'dataseries',
                     shape: 'squarepin'
                 };
